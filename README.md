@@ -1,0 +1,2 @@
+# YourMomBot
+Kill me
