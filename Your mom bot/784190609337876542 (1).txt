@@ -1,0 +1,10 @@
+{
+	"server name":"null",
+	"server id":"null",
+	"roulette": {
+		"is active":"null",
+		"joined":[],
+		"requests":0,
+		"force target":"null"
+	}
+}

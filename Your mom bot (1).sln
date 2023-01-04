@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Your mom bot", "Your mom bot\Your mom bot.pyproj", "{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A583ACDA-88E1-478E-A616-ED557519CDDD}"
+	ProjectSection(SolutionItems) = preProject
+		8-Ball quotes.txt = 8-Ball quotes.txt
+		Test.runsettings = Test.runsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+		Test|Any CPU = Test|Any CPU
+		Test|x86 = Test|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Debug|x86.Build.0 = Debug|Any CPU
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Release|x86.ActiveCfg = Release|Any CPU
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Release|x86.Build.0 = Release|Any CPU
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Test|Any CPU.Build.0 = Release|Any CPU
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Test|x86.ActiveCfg = Release|Any CPU
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC}.Test|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BB74EA7E-37DD-4789-9F6C-4A319E756DCC} = {A583ACDA-88E1-478E-A616-ED557519CDDD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0B7E0C6-B2F9-46CE-9D6C-825A94EA7644}
+	EndGlobalSection
+EndGlobal
