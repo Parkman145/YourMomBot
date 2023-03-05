@@ -23,9 +23,9 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
-    if message.content.startswith('who'):
-        if message.content.startswith("who asked"):
+    messageUpper = message.content.upper()
+    if message.content.upper().startswith('WHO'):
+        if message.content.upper().startswith('WHO ASKED'):
             await message.channel.send("https://cdn.discordapp.com/attachments/755649995021090900/1081862969119485952/EY88shMXgAMhVD4.png")
         else:
             await message.channel.send('your mom')
