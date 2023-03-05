@@ -6,7 +6,8 @@ import asyncio
 #initial setup
 config = configparser.ConfigParser()
 config.read("config.ini")
-token = config.get("main","token")
+with open("token.txt", "r") as f:
+    token = f.read("main","token")
 
 #bot setup
 intents = discord.Intents.default()
