@@ -2,6 +2,7 @@
 import discord
 import configparser
 import asyncio
+import random
 
 #initial setup
 config = configparser.ConfigParser()
@@ -21,14 +22,18 @@ async def on_ready():
     # print(client.fetch_user(299736315505803264))
 @client.event
 async def on_message(message):
+    
     if message.author == client.user:
         return
+    if message.author.id == 708507641034440714:
+        if random.randint(1, 100) == 1:
+            await message.channel.send("HOLY SHIT SHAY JUST SHUT THE FUCK UP PLEASE NO ONE IS TALKING TO YOU")
+            return
     messageUpper = message.content.upper()
     if message.content.upper().startswith('WHO'):
         if message.content.upper().startswith('WHO ASKED'):
             await message.channel.send("https://cdn.discordapp.com/attachments/755649995021090900/1081862969119485952/EY88shMXgAMhVD4.png")
         else:
             await message.channel.send('your mom')
-
 #run bot
 client.run(token) 
