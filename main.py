@@ -4,17 +4,18 @@ import configparser
 import asyncio
 import random
 import configparser
+import json
 
 from Functions import getRandomTenor
 
 #initial setup
-config = configparser.ConfigParser()
-config.read("config.ini")
 tokens = configparser.ConfigParser()
 tokens.read("tokens.ini")
 discord_token = tokens.get("tokens", "discord")
 tenor_token = tokens.get("tokens", "tenor")
-
+with open("config.json") as f:
+    config = json.load(f)
+    
 #bot setup
 intents = discord.Intents.default()
 intents.message_content = True
@@ -31,13 +32,13 @@ async def on_message(message):
         return
     
     #Random chimp event
-    if random.randint(1, 15) == 1:
+    if  random.random() < config["globalConfig"]["chimpChance"]:
         await message.channel.send("RANDOM CHIMP EVENT!!!!!")
         await message.channel.send(getRandomTenor(tenor_token, "chimp"))
         return
     #Shay bullying
     if message.author.id == 708507641034440714:
-        if random.randint(1, 100) == 1:
+        if random.random() < config["globalConfig"]["bullyChance"]:
             message.channel.send("HOLY SHIT SHAY JUST SHUT THE FUCK UP PLEASE NO ONE IS TALKING TO YOU")
             return
         
@@ -45,7 +46,7 @@ async def on_message(message):
     messageUpper = message.content.upper()
     if message.content.upper().startswith('WHO'):
         if message.content.upper().startswith('WHO ASKED'):
-            await message.channel.send("RAhttps://cdn.discordapp.com/attachments/755649995021090900/1081862969119485952/EY88shMXgAMhVD4.png")
+            await message.channel.send("https://cdn.discordapp.com/attachments/755649995021090900/1081862969119485952/EY88shMXgAMhVD4.png")
         else:
             await message.channel.send('your mom')
 

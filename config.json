@@ -1,0 +1,6 @@
+{
+    "globalConfig":{
+        "chimpChance":0.02,
+        "bullyChance":0.01
+    }
+}
