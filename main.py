@@ -1,12 +1,12 @@
 #Import libraries
 import discord
+from discord.ext import commands, tasks
+import datetime
 import configparser
-import asyncio
 import random
-import configparser
 import json
 
-from Functions import getRandomTenor
+from Functions import *
 
 #initial setup
 tokens = configparser.ConfigParser()
@@ -19,16 +19,34 @@ with open("config.json") as f:
 #bot setup
 intents = discord.Intents.default()
 intents.message_content = True
-client = discord.Client(intents=intents)
+bot = commands.Bot(command_prefix="!", intents=intents)
 
-@client.event
+async def broadcastWOTD():
+    wotd = getRandomWord()
+    for channel_id in config["globalConfig"]["wotdBroadcastChannels"]:
+        channel = await bot.fetch_channel(channel_id)
+        await channel.send(wotd)
+
+
+
+
+
+# If no tzinfo is given then UTC is assumed.
+time = datetime.time(hour=config["globalConfig"]["wotdTime"][0], minute=config["globalConfig"]["wotdTime"][1])
+
+
+
+
+@bot.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
-    # print(client.fetch_user(299736315505803264))
-@client.event
+    print(f'We have logged in as {bot.user}')
+    await bot.add_cog(scheduler(bot))
+    # print(bot.fetch_user(299736315505803264))
+
+@bot.event
 async def on_message(message):
     #End if author is bot
-    if message.author == client.user:
+    if message.author == bot.user:
         return
     
     #Random chimp event
@@ -39,7 +57,7 @@ async def on_message(message):
     #Shay bullying
     if message.author.id == 708507641034440714:
         if random.random() < config["globalConfig"]["bullyChance"]:
-            message.channel.send("HOLY SHIT SHAY JUST SHUT THE FUCK UP PLEASE NO ONE IS TALKING TO YOU")
+            await message.channel.send("HOLY SHIT SHAY JUST SHUT THE FUCK UP PLEASE NO ONE IS TALKING TO YOU")
             return
         
     #Your mom and It's me, I asked responses
@@ -50,5 +68,22 @@ async def on_message(message):
         else:
             await message.channel.send('your mom')
 
+class scheduler(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.broadcastWOTD.start()
+
+    def cog_unload(self):
+        self.broadcastWOTD.cancel()
+
+    @tasks.loop(time=time)
+    async def broadcastWOTD(self):
+        wotd = getRandomWord()
+        for channel_id in config["globalConfig"]["wotdBroadcastChannels"]:
+            channel = await bot.fetch_channel(channel_id)
+            await channel.send(wotd)
+
+
+
 #run bot
-client.run(discord_token) 
+bot.run(discord_token) 
