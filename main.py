@@ -13,6 +13,7 @@ tokens = configparser.ConfigParser()
 tokens.read("tokens.ini")
 discord_token = tokens.get("tokens", "discord")
 tenor_token = tokens.get("tokens", "tenor")
+openai_token = tokens.get("tokens", "openai")
 with open("config.json") as f:
     config = json.load(f)
     
@@ -25,7 +26,8 @@ async def broadcastWOTD():
     wotd = getRandomWord()
     for channel_id in config["globalConfig"]["wotdBroadcastChannels"]:
         channel = await bot.fetch_channel(channel_id)
-        await channel.send(wotd)
+        definition = getDefinition(wotd)
+        await channel.send(definition)
 
 
 
@@ -78,7 +80,7 @@ class scheduler(commands.Cog):
 
     @tasks.loop(time=time)
     async def broadcastWOTD(self):
-        wotd = getRandomWord()
+        wotd = getDefinition(openai_token, getRandomWord())
         for channel_id in config["globalConfig"]["wotdBroadcastChannels"]:
             channel = await bot.fetch_channel(channel_id)
             await channel.send(wotd)
