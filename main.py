@@ -5,6 +5,7 @@ import datetime
 import configparser
 import random
 import json
+from datetime import date
 
 from Functions import *
 
@@ -80,10 +81,21 @@ class scheduler(commands.Cog):
 
     @tasks.loop(time=time)
     async def broadcastWOTD(self):
+        if date.today().isoformat() in config["globalConfig"]["birthdays"].keys():
+            for birthday in config["globalConfig"]["birthdays"][date.today().isoformat()]:
+                person = birthday["person"]
+                channel_id = birthday["channel"]
+                channel = await bot.fetch_channel(channel_id)
+                birthdaygif = getRandomTenor(tenor_token, "birthday")
+                await channel.send(f"Happy birthday {person}!!!!!")
+                await channel.send(birthdaygif)
+
+        
         wotd = getDefinition(openai_token, getRandomWord())
         for channel_id in config["globalConfig"]["wotdBroadcastChannels"]:
             channel = await bot.fetch_channel(channel_id)
             await channel.send(wotd)
+    
 
 
 
