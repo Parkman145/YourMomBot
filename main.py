@@ -62,7 +62,7 @@ async def on_message(message):
         return
     
     #Han Ban
-    if message.channel.id == config["globalConfig"]["hanChannel"] and message.content !=  "https://tenor.com/view/jisung-han-jisung-stray-kids-skz-skz-jisung-gif-19153372":
+    if message.channel.id in config["globalConfig"]["hanChannel"] and message.content !=  "https://tenor.com/view/jisung-han-jisung-stray-kids-skz-skz-jisung-gif-19153372":
         await message.guild.kick(message.author, reason="not that one han gif")
 
     #Random chimp event
