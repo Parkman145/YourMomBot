@@ -132,3 +132,4 @@ dmypy.json
 token.txt
 tokens.ini
 Test.ipynb
+config.json

@@ -1,0 +1,12 @@
+{
+    "globalConfig":{
+        "chimpChance":0.02,
+        "bullyChance":0.01,
+        "wotdBroadcastChannels":[],
+        "wotdTime":[2, 51],
+        "birthdays":{
+            "2023-04-08":[{"person":"example", "channel":755649995021090900}],
+        "hanChannel":[]
+        }
+    }
+}

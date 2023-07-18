@@ -1,15 +1,23 @@
 #Import libraries
+import asyncio
 import discord
 from discord.ext import commands, tasks
+from discord import app_commands
 import datetime
 import configparser
 import random
 import json
+import os
+from shutil import copy
 from datetime import date
-
 from Functions import *
 
-#initial setup
+# setup config
+if not os.path.exists("config.json"):
+    
+    copy("defaultconfig.json", "config.json")
+
+# initial setup
 tokens = configparser.ConfigParser()
 tokens.read("tokens.ini")
 discord_token = tokens.get("tokens", "discord")
@@ -22,7 +30,6 @@ with open("config.json") as f:
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
-
 async def broadcastWOTD():
     wotd = getRandomWord()
     for channel_id in config["globalConfig"]["wotdBroadcastChannels"]:
@@ -38,20 +45,26 @@ async def broadcastWOTD():
 time = datetime.time(hour=config["globalConfig"]["wotdTime"][0], minute=config["globalConfig"]["wotdTime"][1])
 
 
-
+# @bot.tree.command(name = "getuserpfp")
+# async def getuserpfp(interaction: discord.Interaction):
+#     await interaction.response.send_message("Hello!")
 
 @bot.event
 async def on_ready():
+    await bot.tree.sync()
     print(f'We have logged in as {bot.user}')
     await bot.add_cog(scheduler(bot))
-    # print(bot.fetch_user(299736315505803264))
-
+    
 @bot.event
 async def on_message(message):
     #End if author is bot
     if message.author == bot.user:
         return
     
+    #Han Ban
+    if message.channel.id == config["globalConfig"]["hanChannel"] and message.content !=  "https://tenor.com/view/jisung-han-jisung-stray-kids-skz-skz-jisung-gif-19153372":
+        await message.guild.kick(message.author, reason="not that one han gif")
+
     #Random chimp event
     if  random.random() < config["globalConfig"]["chimpChance"]:
         await message.channel.send("RANDOM CHIMP EVENT!!!!!")
