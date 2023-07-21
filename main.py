@@ -11,6 +11,7 @@ import os
 from shutil import copy
 from datetime import date
 from Functions import *
+import anime_detector
 
 # setup config
 if not os.path.exists("config.json"):
@@ -60,7 +61,8 @@ async def on_message(message):
     #End if author is bot
     if message.author == bot.user:
         return
-    
+    if anime_detector.check_asset(message.author.avatar) and random.random() < config["globalConfig"]["animeChance"]:
+        await message.channel.send("STFU anime pfp")
     #Han Ban
     if message.channel.id in config["globalConfig"]["hanChannel"] and message.content !=  "https://tenor.com/view/jisung-han-jisung-stray-kids-skz-skz-jisung-gif-19153372":
         await message.guild.kick(message.author, reason="not that one han gif")
@@ -83,6 +85,10 @@ async def on_message(message):
             await message.channel.send("https://cdn.discordapp.com/attachments/755649995021090900/1081862969119485952/EY88shMXgAMhVD4.png")
         else:
             await message.channel.send('your mom')
+    # Test
+    if message.content.startswith("test"):
+        print("running test")
+        print(anime_detector.check_asset(message.author.avatar))
 
 class scheduler(commands.Cog):
     def __init__(self, bot):
