@@ -1,4 +1,6 @@
 discord
 google
+google-cloud
+google-cloud-vision
 pickledb
 openai
