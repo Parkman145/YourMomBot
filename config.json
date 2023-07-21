@@ -1,8 +1,0 @@
-{
-    "globalConfig":{
-        "chimpChance":0.02,
-        "bullyChance":0.01,
-        "wotdBroadcastChannels":[755649995021090900],
-        "wotdTime":[2, 51]
-    }
-}
