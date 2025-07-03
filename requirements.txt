@@ -1,6 +1,3 @@
-discord
-google
-google-cloud
+discord.py
+requests
 google-cloud-vision
-pickledb
-openai
