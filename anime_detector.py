@@ -4,10 +4,7 @@ from google.cloud.vision_v1 import ImageAnnotatorClient
 
 db = {}
 
-
-
 def check_image(url):
-
     if url in db:
         return db[url]
 
@@ -21,9 +18,9 @@ def check_image(url):
             }
         ]
         })
+    
     has_anime_pfp = False
     for item in response.label_annotations:
-
         if item.description == "Anime":
             has_anime_pfp = True
             break
