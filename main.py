@@ -1,18 +1,23 @@
-# This example requires the 'message_content' intent.
-
-import discord
-import configparser
+from os import environ
 import datetime
 import json
-from Functions import *
 from types import SimpleNamespace
-import anime_detector
 
-# initial setup
-tokens = configparser.ConfigParser()
-tokens.read("tokens.ini")
-discord_token = tokens.get("tokens", "discord")
-tenor_token = tokens.get("tokens", "tenor")
+import discord
+
+import anime_detector
+from Functions import *
+
+
+discord_token = environ.get("discord_token")
+tenor_token = environ.get("tenor_token")
+
+if not discord_token:
+    raise ValueError("discord_token not found")
+
+if not tenor_token:
+    raise ValueError("tenor not found")
+
 
 with open("config.json") as f:
     config = f.read()
