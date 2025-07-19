@@ -35,6 +35,8 @@ class MyClient(discord.Client):
             return
         if "JOB" in message_upper or "EMPLOY" in message_upper:
             await message.author.timeout(datetime.timedelta(minutes=1))
+        if "NOTICE" in message_upper or "NOTICING" in message_upper or "NOOTICING" in message_upper:
+            await message.reply(stickers=[client.get_sticker(1396033094439407666)])
         if random_chance(config.animeChance) and anime_detector.check_image(message.author.avatar.url):
             await message.channel.send("STFU anime pfp")
         if random_chance(config.chimpChance):
