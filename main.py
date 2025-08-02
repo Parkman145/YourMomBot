@@ -36,12 +36,14 @@ class MyClient(discord.Client):
         if "JOB" in message_upper or "EMPLOY" in message_upper:
             await message.author.timeout(datetime.timedelta(minutes=1))
         if "NOTICE" in message_upper or "NOTICING" in message_upper or "NOOTICING" in message_upper:
-            await message.reply("https://media.discordapp.net/attachments/755649995021090900/1396029947071697009/nooticing.png?ex=687c99b4&is=687b4834&hm=d3bb6efbc3c1506ce010750c4de0c65ae38f4edef2d60cd3d46194d6e2a7ab1d&=&format=webp&quality=lossless")
+            await message.reply(stickers=[client.get_sticker(1396033094439407666)])
         if random_chance(config.animeChance) and anime_detector.check_image(message.author.avatar.url):
             await message.channel.send("STFU anime pfp")
         if random_chance(config.chimpChance):
             await message.channel.send("RANDOM CHIMP EVENT!!!!!")
             await message.channel.send(getRandomTenor(tenor_token, "chimp"))
+        if message.author.id == 691144881543970946 and "luke" in message.content:
+            await message.author.timeout(datetime.timedelta(minutes=1))
             
 intents = discord.Intents.default()
 intents.message_content = True
