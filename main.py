@@ -42,7 +42,7 @@ class MyClient(discord.Client):
         if random_chance(config.chimpChance):
             await message.channel.send("RANDOM CHIMP EVENT!!!!!")
             await message.channel.send(getRandomTenor(tenor_token, "chimp"))
-        if message.author.id == 691144881543970946 and "luke" in message.content:
+        if message.author.id == 691144881543970946 and "luke" in message_upper:
             await message.author.timeout(datetime.timedelta(minutes=1))
             
 intents = discord.Intents.default()
