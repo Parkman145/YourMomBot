@@ -29,7 +29,7 @@ class MessageCounter:
         pass
 
     @classmethod
-    def check(cls, message: discord.Message):
+    def check(cls, message: discord.Message) -> bool:
         channel = message.channel
         content = message.content
         if channel in cls.counts:
@@ -50,7 +50,7 @@ class MyClient(discord.Client):
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
 
-    async def on_message(self, message):
+    async def on_message(self, message: discord.Message):
         if message.author == self.user:
             return
         message_upper = message.content.upper()
