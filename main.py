@@ -25,8 +25,6 @@ config = json.loads(config, object_hook=lambda d: SimpleNamespace(**d))
 
 class MessageCounter:
     counts = {}
-    def __init__(self):
-        pass
 
     @classmethod
     def check(cls, message: discord.Message) -> bool:
