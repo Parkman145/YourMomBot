@@ -18,6 +18,29 @@ with open("config.json") as f:
     config = f.read()
 config = json.loads(config, object_hook=lambda d: SimpleNamespace(**d))
 
+class MessageCounter:
+    counts = {}
+    def __init__(self):
+        pass
+
+    @classmethod
+    def check(cls, message: discord.Message):
+        channel = message.channel
+        content = message.content
+        if channel in cls.counts:
+            if cls.counts[channel][0] == content:
+                
+                cls.counts[message.channel][1] += 1
+                if cls.counts[message.channel][1] == 3:
+                    return True 
+            else: 
+                cls.counts[message.channel][0] = content
+                cls.counts[message.channel][1] = 1
+        else:
+            cls.counts[channel] = [content, 1]
+
+        return False
+
 class MyClient(discord.Client):
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
@@ -26,6 +49,8 @@ class MyClient(discord.Client):
         if message.author == self.user:
             return
         message_upper = message.content.upper()
+        if MessageCounter.check(message):
+            await message.channel.send(message.content)
         if message_upper.startswith("WHO ASKED"):
             print("message")
             await message.channel.send("https://cdn.discordapp.com/attachments/755649995021090900/1081862969119485952/EY88shMXgAMhVD4.png")
