@@ -1,18 +1,23 @@
-# This example requires the 'message_content' intent.
-
-import discord
-import configparser
+from os import environ
 import datetime
 import json
-from Functions import *
 from types import SimpleNamespace
-import anime_detector
 
-# initial setup
-tokens = configparser.ConfigParser()
-tokens.read("tokens.ini")
-discord_token = tokens.get("tokens", "discord")
-tenor_token = tokens.get("tokens", "tenor")
+import discord
+
+import anime_detector
+from Functions import *
+
+
+discord_token = environ.get("discord_token")
+tenor_token = environ.get("tenor_token")
+
+if not discord_token:
+    raise ValueError("discord_token not found")
+
+if not tenor_token:
+    raise ValueError("tenor not found")
+
 
 with open("config.json") as f:
     config = f.read()
@@ -61,7 +66,7 @@ class MyClient(discord.Client):
         if "JOB" in message_upper or "EMPLOY" in message_upper:
             await message.author.timeout(datetime.timedelta(minutes=1))
         if has_nootice(message_upper):
-            await message.reply("https://media.discordapp.net/attachments/755649995021090900/1396029947071697009/nooticing.png?ex=687c99b4&is=687b4834&hm=d3bb6efbc3c1506ce010750c4de0c65ae38f4edef2d60cd3d46194d6e2a7ab1d&=&format=webp&quality=lossless")
+            await message.reply("https://media.discordapp.net/attachments/755649995021090900/1396029947071697009/nooticing.png?ex=690e4774&is=690cf5f4&hm=83b5b6bb1c2ed54beba61eccb3d22f81d19851d1e1dc1fd277628914cd47760b&=&format=webp&quality=lossless&width=1280&height=1056")
         if random_chance(config.animeChance) and anime_detector.check_image(message.author.avatar.url):
             await message.channel.send("STFU anime pfp")
         if random_chance(config.chimpChance):
