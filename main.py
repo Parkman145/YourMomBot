@@ -67,9 +67,9 @@ class MyClient(discord.Client):
             await message.channel.send(getRandomTenor(tenor_token, "chimp"))
         if message.author.id == 691144881543970946 and "luke" in message_upper:
             await message.author.timeout(datetime.timedelta(minutes=1))
-        if message_upper.startswith("YES") and random_chance(0.2):
+        if message_upper == "YES" and random_chance(0.2):
             await message.channel.send("no")
-        if message_upper.startswith("NO") and random_chance(0.2):
+        if message_upper == "NO" and random_chance(0.2):
             await message.channel.send("yes")
 intents = discord.Intents.default()
 intents.message_content = True
