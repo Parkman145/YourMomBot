@@ -71,6 +71,8 @@ class MyClient(discord.Client):
             await message.channel.send("no")
         if message_upper == "NO" and random_chance(0.2):
             await message.channel.send("yes")
+        if message_upper == "TYPE SHIT":
+            await message.channel.send("shit")
 intents = discord.Intents.default()
 intents.message_content = True
 
