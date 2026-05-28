@@ -79,6 +79,7 @@ class MyClient(discord.Client):
             await guild.ban(user)
 intents = discord.Intents.default()
 intents.message_content = True
+intents.members = True
 
 client = MyClient(intents=intents)
 client.run(discord_token)
