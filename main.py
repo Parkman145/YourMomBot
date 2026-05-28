@@ -73,6 +73,10 @@ class MyClient(discord.Client):
             await message.channel.send("yes")
         if message_upper == "TYPE SHIT":
             await message.channel.send("shit")
+    async def on_member_join(self, user: discord.User):
+        if user.id == 480093469818355713:
+            guild = self.get_guild(1509394634768646224)
+            await guild.ban(user)
 intents = discord.Intents.default()
 intents.message_content = True
 
