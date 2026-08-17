@@ -1,5 +1,7 @@
 {
         "chimpChance":0.02,
-        "animeChance":0.01
-
+        "animeChance":0.01,
+        "bannedWords":["work",
+        "job",
+        "employ"]
 }
