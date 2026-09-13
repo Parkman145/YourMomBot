@@ -62,11 +62,13 @@ class MyClient(discord.Client):
         if message_upper.startswith("WHO"):
             await message.channel.send("your mom")
             return
-        for word in config.bannedWords:
-            if word.upper() in sanitize(message_upper):
-                await message.author.timeout(datetime.timedelta(minutes=1))
-                print("banned")
-                break
+        print(message.author.id not in config.exempt_users)
+        if message.author.id not in config.exempt_users:
+            for word in config.bannedWords:
+                if word.upper() in sanitize(message_upper):
+                    await message.author.timeout(datetime.timedelta(minutes=1))
+                    print("banned")
+                    break
         if has_nootice(message_upper):
             await message.reply("https://media.discordapp.net/attachments/755649995021090900/1396029947071697009/nooticing.png?ex=690e4774&is=690cf5f4&hm=83b5b6bb1c2ed54beba61eccb3d22f81d19851d1e1dc1fd277628914cd47760b&=&format=webp&quality=lossless&width=1280&height=1056")
         if random_chance(config.animeChance) and anime_detector.check_image(message.author.avatar.url):

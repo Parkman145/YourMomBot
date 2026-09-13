@@ -3,5 +3,6 @@
         "animeChance":0.01,
         "bannedWords":["work",
         "job",
-        "employ"]
+        "employ"],
+        "exempt_users":[]
 }
